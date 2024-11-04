@@ -28,14 +28,24 @@ public enum LottoRank {
 
 
     public static LottoRank valueOf(int matchCount, boolean checkBonusNumber) {
-        LottoRank[] lottoRanks = LottoRank.values();
-        for (LottoRank lottoRank : lottoRanks) {
-            if (lottoRank.getMatchCount() == matchCount && lottoRank.isMatchBonus() == checkBonusNumber) {
+        if (matchCount == 5) {
+            return getRankForFiveMatches(checkBonusNumber);
+        }
+
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (lottoRank.getMatchCount() == matchCount) {
                 return lottoRank;
             }
         }
         return FAIL;
+    }
 
+
+    private static LottoRank getRankForFiveMatches(boolean checkBonusNumber) {
+        if(checkBonusNumber){
+            return SECOND;
+        }
+        return THIRD;
     }
 
 
