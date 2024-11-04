@@ -13,10 +13,10 @@ import winningLottoNumber.WinningLottoNumber;
 public interface LottoService {
 
 
-    int calculateBuyQuantity(int buyPrice);
+    long calculateBuyQuantity(long buyPrice);
 
 
-    void buyLotto(int buyQuantity);
+    void buyLotto(long buyQuantity);
 
 
     List<Observer> getPurchasedLotto();

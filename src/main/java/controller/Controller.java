@@ -25,9 +25,8 @@ public class Controller {
 
 
     public void play() {
-        int buyQuantity = getBuyQuantity();
+        long buyQuantity = getBuyQuantity();
         outputView.showQuantityView(buyQuantity);
-
         lottoService.buyLotto(buyQuantity);
         outputView.showMyPurchasedLotto(lottoService.getPurchasedLotto());
 
@@ -40,8 +39,8 @@ public class Controller {
     }
 
 
-    private int getBuyQuantity() {
-        int buyPrice;
+    private long getBuyQuantity() {
+        long buyPrice;
         while (true) {
             try {
                 buyPrice = inputView.startView();

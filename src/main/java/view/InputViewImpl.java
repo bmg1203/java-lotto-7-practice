@@ -10,13 +10,13 @@ public class InputViewImpl implements InputView {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
 
-    public int startView() {
+    public long startView() {
 
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
         String inputStringPrice = InputUtils.getInput();
 
         try {
-            return Integer.parseInt(inputStringPrice);
+            return Long.parseLong(inputStringPrice);
 
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorConst.ERROR_PARSING_NUMBER);

@@ -32,15 +32,15 @@ public class LottoServiceImpl implements LottoService {
     }
 
 
-    public int calculateBuyQuantity(int buyPrice) {
+    public long calculateBuyQuantity(long buyPrice) {
 
         return QuantityCalculator.calculateBuyQuantity(buyPrice);
 
     }
 
 
-    public void buyLotto(int buyQuantity) {
-        for (int i = 0; i < buyQuantity; i++) {
+    public void buyLotto(long buyQuantity) {
+        for (long i = 0; i < buyQuantity; i++) {
             PurchasedLotto purchasedLotto = LottoFactory.createLotto();
             purchasedLottoRepository.saveMyLotto(purchasedLotto);
         }
