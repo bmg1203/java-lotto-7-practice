@@ -5,8 +5,8 @@ import observer.Observer;
 import rank.LottoRank;
 
 public class PurchasedLotto implements Observer {
-    private final Lotto myLotto;  // 구매한 로또 번호 객체
-    private LottoRank rank;       // 로또 등수
+    private final Lotto myLotto;
+    private LottoRank rank;
 
     private PurchasedLotto(Lotto myLotto) {
         this.myLotto = myLotto;

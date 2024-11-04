@@ -31,7 +31,7 @@ public class Controller {
         lottoService.buyLotto(buyQuantity);
         outputView.showMyPurchasedLotto(lottoService.getPurchasedLotto());
 
-        Lotto createdLottoWithWinningNumber = getInputAndCreateLotto();   // 당첨번호의 로또 인풋으로부터 생성
+        Lotto createdLottoWithWinningNumber = getInputAndCreateLotto();
         createWinningLotto(createdLottoWithWinningNumber);
 
 
