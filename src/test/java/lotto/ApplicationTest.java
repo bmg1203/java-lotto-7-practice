@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -35,21 +36,88 @@ class ApplicationTest extends NsTest {
                             "총 수익률은 62.5%입니다."
                     );
                 },
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44),
-                List.of(1, 8, 11, 31, 41, 42),
-                List.of(13, 14, 16, 38, 42, 45),
-                List.of(7, 11, 30, 40, 42, 43),
-                List.of(2, 13, 22, 32, 38, 45),
-                List.of(1, 3, 5, 14, 22, 45)
+                new ArrayList<>(List.of(8, 21, 23, 41, 42, 43)),
+                new ArrayList<>(List.of(3, 5, 11, 16, 32, 38)),
+                new ArrayList<>(List.of(7, 11, 16, 35, 36, 44)),
+                new ArrayList<>(List.of(1, 8, 11, 31, 41, 42)),
+                new ArrayList<>(List.of(13, 14, 16, 38, 42, 45)),
+                new ArrayList<>(List.of(7, 11, 30, 40, 42, 43)),
+                new ArrayList<>(List.of(2, 13, 22, 32, 38, 45)),
+                new ArrayList<>(List.of(1, 3, 5, 14, 22, 45))
         );
     }
 
+
+    // 예외 테스트
+
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_가격_숫자가_아닌_입력() {
         assertSimpleTest(() -> {
             runException("1000j");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_가격_1000의_배수가_아닌_숫자() {
+        assertSimpleTest(() -> {
+            runException("1020");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_가격_1000_미만() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_형식_1() {
+        assertSimpleTest(() -> {
+            runException("1000", "1 2 3 4 5 6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_형식_2() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,java,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_개수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_당첨_번호_실수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4.5,5,6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_형식() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "java");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 예외_테스트_보너스_번호_실수() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "4.5");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
