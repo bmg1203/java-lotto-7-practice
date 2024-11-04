@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import observer.Observer;
+import observer.ObserverManager;
 import observer.Subject;
 
 public class WinningLottoNumber implements Subject {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
-    private final List<Observer> observers = new ArrayList<>();
+    private final ObserverManager observerManager = new ObserverManager();
 
 
     private WinningLottoNumber(Lotto winningLotto, BonusNumber bonusNumber) {
@@ -32,25 +33,17 @@ public class WinningLottoNumber implements Subject {
     }
 
 
-
     @Override
     public void addObserver(List<Observer> myPurchasedLotto) {
         for (Observer observer : myPurchasedLotto) {
-            observers.add(observer);
+            observerManager.addObserver(observer);
         }
     }
 
     // 당첨번호과 확정되면 모든 옵저버에게 알린다.
     public void confirmWinningNumbers() {
-        notifyObservers();  // 정답 번호가 확정된 후 옵저버들에게 알림
+        observerManager.notifyObservers(winningLotto.getLottoNumbers(), bonusNumber.getBonusNumber());
     }
 
 
-    @Override
-    public void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update(winningLotto.getLottoNumbers(),bonusNumber.getBonusNumber());
-        }
-
-    }
 }
