@@ -12,5 +12,6 @@ public class ErrorConst {
     public  static final String ERROR_NUMBER_OUT_OF_RANGE = "[ERROR] 로또 번호는 1 ~ 45 사이의 값이어야 합니다.";
     public  static final String ERROR_DUPLICATE_NUMBER = "[ERROR] 로또 번호는 중복되어서는 안됩니다.";
 
-    public  static final String ERROR_NEGATIVE_AMOUNT = "[ERROR] 금액은 양수를 입력해주세요.";
+    public  static final String ERROR_NOT_AVAILABLE_RANGE = "[ERROR] 구매가능금액은 1,000원 ~ 4,611,686,018,000원 입니다.";
+
 }
