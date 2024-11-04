@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -14,7 +15,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
+        if (new HashSet<>(numbers).size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 전부 달라야 합니다.");
+        }
+        for (int i = 1; i < 6; i++){
+            if (numbers.get(i) <= numbers.get(i - 1)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 오름차순으로 정렬되어야 합니다.");
+            }
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
 }
