@@ -17,7 +17,7 @@ public class LottoManager {
     private final LottoWinningResult lottoWinningResult;
 
 
-    public LottoManager(PurchasedLottoRepository purchasedLottoRepository, LottoWinningResult lottoWinningResult) {
+    private LottoManager(PurchasedLottoRepository purchasedLottoRepository, LottoWinningResult lottoWinningResult) {
         this.purchasedLottoRepository = purchasedLottoRepository;
         this.lottoWinningResult = lottoWinningResult;
     }
