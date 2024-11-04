@@ -1,6 +1,8 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import lotto.common.Constants;
@@ -32,7 +34,15 @@ public class OutputView {
     }
 
     private void showRankStatistics(Map<LottoRank, Integer> rankCount) {
-        for (LottoRank rank : LottoRank.values()) {
+        List<LottoRank> rankOrder = new ArrayList<>();
+
+        rankOrder.add(LottoRank.FIFTH);
+        rankOrder.add(LottoRank.FOURTH);
+        rankOrder.add(LottoRank.THIRD);
+        rankOrder.add(LottoRank.SECOND);
+        rankOrder.add(LottoRank.FIRST);
+
+        for (LottoRank rank : rankOrder) {
             int count = rankCount.getOrDefault(rank, 0);
             System.out.println(rank.getMessage() + count + Prompts.OUTPUT_LOTTO_COUNT_UNIT);
         }
