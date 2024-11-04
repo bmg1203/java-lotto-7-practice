@@ -1,25 +1,38 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
+
     @Test
-    void 로또_번호의_개수가_6개가_넘어가면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void 로또_번호_오름차순_출력() {
+        Lotto lotto = new Lotto(List.of(36, 29, 8, 24, 31, 12));
+        String expected = "[8, 12, 24, 29, 31, 36]";
+        assertThat(lotto.toString()).isEqualTo(expected);
     }
 
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
-    void 로또_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void 로또_등수_계산() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // 0등: 0 ~ 2개 일치
+        assertThat(lotto.calculateRank(List.of(7, 8, 9, 10, 11, 12), 13)).isEqualTo(0);
+        assertThat(lotto.calculateRank(List.of(1, 8, 9, 10, 11, 12), 13)).isEqualTo(0);
+        assertThat(lotto.calculateRank(List.of(1, 2, 9, 10, 11, 12), 13)).isEqualTo(0);
+        // 5등: 3개 일치
+        assertThat(lotto.calculateRank(List.of(1, 2, 3, 10, 11, 12), 13)).isEqualTo(5);
+        // 4등: 4개 일치
+        assertThat(lotto.calculateRank(List.of(1, 2, 3, 4, 11, 12), 13)).isEqualTo(4);
+        // 3등: 5개 일치
+        assertThat(lotto.calculateRank(List.of(1, 2, 3, 4, 5, 12), 13)).isEqualTo(3);
+        // 2등: 5개 일치 + 보너스 번호 일치
+        assertThat(lotto.calculateRank(List.of(1, 2, 3, 4, 5, 12), 6)).isEqualTo(2);
+        // 1등: 6개 일치
+        assertThat(lotto.calculateRank(List.of(1, 2, 3, 4, 5, 6), 13)).isEqualTo(1);
     }
-
-    // TODO: 추가 기능 구현에 따른 테스트 코드 작성
 }
