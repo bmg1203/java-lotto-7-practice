@@ -8,13 +8,13 @@ public class QuantityCalculator {
 
 
     public static int calculateBuyQuantity(int buyPrice) {
+        isPositivePrice(buyPrice);
         return validateCanBeDivided(buyPrice);
     }
 
 
     private static int validateCanBeDivided(int buyPrice) {
         if (buyPrice % PRICE_UNIT != 0 ) {
-            isPositivePrice(buyPrice);
             throw new IllegalArgumentException(ErrorConst.ERROR_INVALID_AMOUNT);
         }
         return buyPrice / PRICE_UNIT;
