@@ -13,9 +13,17 @@ public class QuantityCalculator {
 
 
     private static int validateCanBeDivided(int buyPrice) {
-        if (buyPrice % PRICE_UNIT != 0 || buyPrice <=0) {
+        if (buyPrice % PRICE_UNIT != 0 ) {
+            isPositivePrice(buyPrice);
             throw new IllegalArgumentException(ErrorConst.ERROR_INVALID_AMOUNT);
         }
         return buyPrice / PRICE_UNIT;
+    }
+
+    private static boolean isPositivePrice(int buyPrice){
+        if(buyPrice <=0){
+            throw new IllegalArgumentException(ErrorConst.ERROR_NEGATIVE_AMOUNT );
+        }
+        return true;
     }
 }
