@@ -2,8 +2,8 @@ package lotto.constants;
 
 public enum OutputPrompts {
 
-    PURCHASE_COUNT_OUTPUT("%d개를 구매했습니다."),
-    WINNING_STATISTICS_HEADER_OUTPUT("당첨 통계\n---"),
+    PURCHASE_COUNT_OUTPUT("\n%d개를 구매했습니다."),
+    WINNING_STATISTICS_HEADER_OUTPUT("\n당첨 통계\n---"),
     FIFTH_PLACE_COUNT_OUTPUT("3개 일치 (5,000원) - %d개"),
     FOURTH_PLACE_COUNT_OUTPUT("4개 일치 (50,000원) - %d개"),
     THIRD_PLACE_COUNT_OUTPUT("5개 일치 (1,500,000원) - %d개"),

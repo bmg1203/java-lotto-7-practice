@@ -15,6 +15,7 @@ public class OutputView {
         for (Lotto lotto : lottoGenerator.getLottos()) {
             System.out.println(Arrays.toString(lotto.getNumbers().toArray()));
         }
+        System.out.println();
     }
 
     public void resultPrint(WinningResult winningResult) {
