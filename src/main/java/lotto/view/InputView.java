@@ -10,7 +10,7 @@ import lotto.utils.Split;
 
 public class InputView {
 
-    public static Purchase purchaseInput() {
+    public Purchase purchaseInput() {
         while(true) {
             try {
                 String input = Console.readLine();
@@ -22,7 +22,7 @@ public class InputView {
         }
     }
 
-    public static Lotto winningNumberInput() {
+    public Lotto winningNumberInput() {
         while(true) {
             try {
                 String input = Console.readLine();
@@ -33,14 +33,14 @@ public class InputView {
         }
     }
 
-    private static Lotto getLotto(String input) {
+    private Lotto getLotto(String input) {
         List<String> winningNumberString = Split.commaSplit(input);
         List<Integer> winningNumber = Parser.parseStringListToIntList(winningNumberString);
 
         return new Lotto(winningNumber);
     }
 
-    public static Bonus BonusInput(Lotto winningNumber) {
+    public Bonus BonusInput(Lotto winningNumber) {
         while(true) {
             try {
                 String input = Console.readLine();
