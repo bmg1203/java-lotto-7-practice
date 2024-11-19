@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.constants.LottoNumbers;
@@ -19,7 +19,7 @@ public class LottoGenerator {
     }
 
     private List<Lotto> generateLottos(Purchase purchase) {
-        Set<Lotto> noDuplicateLottos = new HashSet<>();
+        Set<Lotto> noDuplicateLottos = new LinkedHashSet<>();
 
         while (noDuplicateLottos.size() != purchase.purchaseCount()) {
             Lotto lotto = generateRandomNumbers();
