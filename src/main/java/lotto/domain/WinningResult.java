@@ -16,7 +16,7 @@ public class WinningResult {
 
     public WinningResult(Lotto winningNumber, Bonus bonus, LottoGenerator lottoGenerator, Purchase purchase) {
         this.winningCount = getWinningCount(winningNumber, bonus, lottoGenerator);
-        this.returnRate = getReturnRate(purchase);
+        this.returnRate = calculateReturnRate(purchase);
     }
 
     public Map<Integer, Integer> getWinningCount() {
@@ -74,7 +74,7 @@ public class WinningResult {
     }
 
     //수익률 관련 메소드
-    private BigDecimal getReturnRate(Purchase purchase) {
+    private BigDecimal calculateReturnRate(Purchase purchase) {
         BigDecimal totalWinnings = getWinnings();
         BigDecimal purchaseMoney = new BigDecimal(purchase.getMoney());
 
