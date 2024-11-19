@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public void resultPrint(WinningResult winningResult) {
-        System.out.println(OutputPrompts.WINNING_STATISTICS_HEADER_OUTPUT.getPrompt());
+        System.out.print(OutputPrompts.WINNING_STATISTICS_HEADER_OUTPUT.getPrompt());
 
         winningCountPrint(winningResult);
         returnRatePrint(winningResult);
