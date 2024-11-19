@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.constants.InputPrompts;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
@@ -13,6 +14,7 @@ public class InputView {
     public Purchase purchaseInput() {
         while(true) {
             try {
+                System.out.println(InputPrompts.PURCHASE_MONEY_INPUT.getPrompt());
                 String input = Console.readLine();
                 int purchase = Parser.parseStringToInt(input);
                 return new Purchase(purchase);
@@ -25,6 +27,7 @@ public class InputView {
     public Lotto winningNumberInput() {
         while(true) {
             try {
+                System.out.println(InputPrompts.WINNING_NUMBER_INPUT.getPrompt());
                 String input = Console.readLine();
                 return getLotto(input);
             } catch (IllegalArgumentException e) {
@@ -43,6 +46,7 @@ public class InputView {
     public Bonus bonusInput(Lotto winningNumber) {
         while(true) {
             try {
+                System.out.println(InputPrompts.BONUS_NUMBER_INPUT.getPrompt());
                 String input = Console.readLine();
                 int bonus = Parser.parseStringToInt(input);
                 return new Bonus(winningNumber, bonus);
