@@ -14,6 +14,10 @@ public class Purchase {
         this.money = money;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     private void validateMin(int money) {
         if (money < MIN_MONEY) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MIN_MONEY_ERROR.getMessage());
