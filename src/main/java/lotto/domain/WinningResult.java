@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -72,6 +73,21 @@ public class WinningResult {
         return null;
     }
 
+    //수익률 관련 메소드
     private BigDecimal getReturnRate(Purchase purchase) {
+        BigDecimal totalWinnings = getWinnings();
+        BigDecimal purchaseMoney = new BigDecimal(purchase.getMoney());
+
+        return totalWinnings.divide(purchaseMoney, 1, RoundingMode.HALF_UP);
+    }
+
+    private BigDecimal getWinnings() {
+        BigDecimal totalWinnings = new BigDecimal(0);
+
+        for (int value : winningCount.values()) {
+            totalWinnings.add(new BigDecimal(value));
+        }
+
+        return totalWinnings;
     }
 }
