@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 import lotto.utils.Parser;
@@ -37,5 +38,17 @@ public class InputView {
         List<Integer> winningNumber = Parser.parseStringListToIntList(winningNumberString);
 
         return new Lotto(winningNumber);
+    }
+
+    public static Bonus BonusInput(Lotto winningNumber) {
+        while(true) {
+            try {
+                String input = Console.readLine();
+                int bonus = Parser.parseStringToInt(input);
+                return new Bonus(winningNumber, bonus);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }
