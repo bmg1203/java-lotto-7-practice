@@ -23,8 +23,8 @@ public class WinningResult {
         return Collections.unmodifiableMap(winningCount);
     }
 
-    public BigDecimal getReturnRate() {
-        return returnRate;
+    public String getReturnRate() {
+        return returnRate.toString();
     }
 
     //당첨 개수 관련 메소드
@@ -75,19 +75,29 @@ public class WinningResult {
 
     //수익률 관련 메소드
     private BigDecimal calculateReturnRate(Purchase purchase) {
-        BigDecimal totalWinnings = getWinnings();
+        BigDecimal totalWinnings = getWinnings().multiply(BigDecimal.valueOf(100));
         BigDecimal purchaseMoney = new BigDecimal(purchase.getMoney());
 
         return totalWinnings.divide(purchaseMoney, 1, RoundingMode.HALF_UP);
     }
 
     private BigDecimal getWinnings() {
-        BigDecimal totalWinnings = new BigDecimal(0);
+        BigDecimal totalWinnings = BigDecimal.ZERO;
 
-        for (int value : winningCount.values()) {
-            totalWinnings.add(new BigDecimal(value));
+        for (int key : winningCount.keySet()) {
+            Prize prize = getPrize(key);
+            totalWinnings = totalWinnings.add(BigDecimal.valueOf(prize.getReward()));
         }
 
         return totalWinnings;
+    }
+
+    private Prize getPrize(int key) {
+        for (Prize prize : Prize.values()) {
+            if (prize.getPlace() == key) {
+                return prize;
+            }
+        }
+        return null;
     }
 }
