@@ -40,7 +40,7 @@ public class InputView {
         return new Lotto(winningNumber);
     }
 
-    public Bonus BonusInput(Lotto winningNumber) {
+    public Bonus bonusInput(Lotto winningNumber) {
         while(true) {
             try {
                 String input = Console.readLine();
