@@ -67,6 +67,23 @@ class ApplicationTest extends NsTest {
     }
 
     //당첨 번호 및 보너스 번호 관련 테스트
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3", "1,2,2,3,4,5", "0,2,3,4,5,6", "1,2,3,4,5,46", "q,2,3,4,5,6"})
+    void 당첨_번호_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("8000", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "a", "3"})
+    void 보너스_번호_예외_테스트(String input) {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", input);
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
 
     //전체 테스트
 
