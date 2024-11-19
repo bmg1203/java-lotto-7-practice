@@ -29,4 +29,8 @@ public class Purchase {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_MONEY_ERROR.getMessage());
         }
     }
+
+    public int purchaseCount() {
+        return money / MIN_MONEY;
+    }
 }
