@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -24,7 +25,8 @@ public class WinningResult {
     }
 
     public String getReturnRate() {
-        return returnRate.toString();
+        DecimalFormat df = new DecimalFormat("###,##0.0");
+        return df.format(returnRate);
     }
 
     //당첨 개수 관련 메소드
