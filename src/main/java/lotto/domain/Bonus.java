@@ -13,6 +13,10 @@ public class Bonus {
         this.bonus = bonus;
     }
 
+    public int getBonus() {
+        return bonus;
+    }
+
     private void validateNumberRange(int bonus) {
         if (bonus < LottoNumbers.LOTTO_MIN_RANGE.getNumber() ||
                 bonus > LottoNumbers.LOTTO_MAX_RANGE.getNumber()) {

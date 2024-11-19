@@ -14,6 +14,10 @@ public class LottoGenerator {
         this.lottos = generateLottos(purchase);
     }
 
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
+    }
+
     private List<Lotto> generateLottos(Purchase purchase) {
         Set<Lotto> noDuplicateLottos = new HashSet<>();
 
