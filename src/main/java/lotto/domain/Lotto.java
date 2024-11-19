@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,8 @@ public class Lotto {
         validate(numbers);
         validateDuplicate(numbers);
         validateNumberRange(numbers);
+
+        Arrays.sort(numbers.toArray());
         this.numbers = numbers;
     }
 
